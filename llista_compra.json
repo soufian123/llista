@@ -1,0 +1,34 @@
+{
+    "registres": [
+        {
+            "article": {
+                "nom": "Llet"
+            },
+            "quantitat": 2
+        }
+    ],
+    "categories": [
+        {
+            "nom": "Frescos",
+            "articles": [
+                {
+                    "nom": "Llet"
+                },
+                {
+                    "nom": "Ous"
+                }
+            ]
+        },
+        {
+            "nom": "Begudes",
+            "articles": [
+                {
+                    "nom": "Aigua"
+                },
+                {
+                    "nom": "Suc"
+                }
+            ]
+        }
+    ]
+}
