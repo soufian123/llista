@@ -6,7 +6,13 @@ import json
 class Llista:
     def __init__(self):
         self.registres = []
-        self.categories = []
+        self.categories = [
+            Categoria("Frescos"),
+            Categoria("Begudes"),
+            Categoria("Làctis"),
+            Categoria("Neteja"),
+            Categoria("Fruita i verdures")
+        ]
 
     def get_registres(self):
         return self.registres
@@ -16,7 +22,7 @@ class Llista:
             self.registres.append(registre)
             return registre
         else:
-            raise ValueError("Duplicate article name")
+            print("Ya existe este artículo")
 
     def read_registre(self, nom_article):
         for registre in self.registres:
@@ -36,14 +42,14 @@ class Llista:
             if registre.article.get_nom() == nom_article:
                 self.registres.remove(registre)
                 return
-        raise ValueError("Article not found")
+        raise ValueError("No se encontró el artículo")
 
     def create_categoria(self, categoria):
         if self.read_categoria(categoria.get_nom()) is None:
             self.categories.append(categoria)
             return categoria
         else:
-            raise ValueError("Duplicate category name")
+            print("Ya existe esa categoría")
 
     def read_categoria(self, nom_categoria):
         for categoria in self.categories:
@@ -63,7 +69,7 @@ class Llista:
             if categoria.get_nom() == nom_categoria:
                 self.categories.remove(categoria)
                 return
-        raise ValueError("Category not found")
+        raise ValueError("No se encontró la categoría")
 
     def desa_a_disc(self, nom_fitxer):
         data = {
@@ -71,7 +77,7 @@ class Llista:
             "categories": [categoria.to_dict() for categoria in self.categories]
         }
         with open(nom_fitxer, 'w') as file:
-            json.dump(data, file, indent=4, default=self.custom_json_encoder)
+            json.dump(data, file, indent=4)
 
     def llegeix_de_disc(self, nom_fitxer):
         try:
